@@ -2,6 +2,8 @@ import dash
 import dash_bootstrap_components as dbc
 from dash import Input, Output, State, html
 
+from dash import dcc
+from scatterplot import graph, create_callback
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
@@ -55,7 +57,9 @@ navbar = dbc.Navbar(
 app.layout = html.Div(children=[
     navbar,
     html.H1(id='mybuttondiv'),
-    html.Div(style={'background-color':'purple', 'height': '500px'}),
+    html.Div(children=[
+        graph,
+    ], style={'background-color':'purple'}),
     html.H1('Ola Rosling opens UN global goal meeting 2020'),
     html.Video(
             controls = True,
@@ -90,6 +94,7 @@ def toggle_navbar_collapse(n, is_open):
         return not is_open
     return is_open
 
+create_callback(app)
 
 server = app.server
 
