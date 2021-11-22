@@ -1,1 +1,1 @@
-web: gunicorn dash:server --workers 1
+web: gunicorn mydash:server --workers 1
